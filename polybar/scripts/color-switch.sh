@@ -5,7 +5,7 @@
 
 SDIR="$HOME/.config/polybar/scripts"
 
-MENU="$(rofi -sep "|" -dmenu -i -p 'Select' -location 5 -columns 1 -xoffset -240 -yoffset -52 -width 12 -hide-scrollbar -line-padding 4 -padding 20 -lines 10 <<< " amber| blue| blue-grey| brown| cyan| deep-orange| deep-purple| green| grey| indigo| light-blue| light-green| lime| orange| pink| purple| red| teal| yellow| amber-dark| blue-dark| blue-grey-dark| brown-dark| cyan-dark| deep-orange-dark| deep-purple-dark| green-dark| grey-dark| indigo-dark| light-blue-dark| light-green-dark| lime-dark| orange-dark| pink-dark| purple-dark| red-dark| teal-dark| yellow-dark")"
+MENU="$(rofi -sep "|" -dmenu -i -p 'Select' -columns 1 -xoffset 0 -yoffset 25 -width 5 -hide-scrollbar -line-padding 4 -padding 20 -lines 10 <<< " amber| blue| blue-grey| brown| cyan| deep-orange| deep-purple| green| grey| indigo| light-blue| light-green| lime| orange| pink| purple| red| teal| yellow| amber-dark| blue-dark| blue-grey-dark| brown-dark| cyan-dark| deep-orange-dark| deep-purple-dark| green-dark| grey-dark| indigo-dark| light-blue-dark| light-green-dark| lime-dark| orange-dark| pink-dark| purple-dark| red-dark| teal-dark| yellow-dark")"
             case "$MENU" in
 				## Light Colors
 				*amber) $SDIR/colors-light.sh -amber ;;
@@ -48,3 +48,4 @@ MENU="$(rofi -sep "|" -dmenu -i -p 'Select' -location 5 -columns 1 -xoffset -240
 				*teal-dark) $SDIR/colors-dark.sh -teal ;;
 				*yellow-dark) $SDIR/colors-dark.sh -yellow				
             esac
+	    echo $MENU > $SDIR/color

@@ -1,0 +1,2 @@
+isw -b on &> /dev/null
+echo "on" >  /home/eldraco/.config/polybar/scripts/fanlog

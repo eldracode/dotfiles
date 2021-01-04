@@ -2,4 +2,6 @@
 
 ## Created By Aditya Shakya
 
-rofi -modi run,drun -show drun -location 7 -xoffset 14 -yoffset -52 -line-padding 4 -columns 1 -width 20 -lines 10 -padding 25 -hide-scrollbar -show-icons -drun-icon-theme
+# rofi -modi run,drun -show drun -location 7 -xoffset 14 -yoffset -52 -line-padding 4 -columns 1 -width 20 -lines 10 -padding 25 -hide-scrollbar -show-icons -drun-icon-theme
+
+rofi -modi run,drun -show drun -location 1 -xoffset 2 -yoffset 30 -line-padding 4 -columns 1 -width 100 -lines 10 -bw 2 -padding 25 -hide-scrollbar -show-icons -drun-icon-theme -theme slate

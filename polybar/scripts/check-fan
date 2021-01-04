@@ -1,0 +1,12 @@
+#!/bin/bash
+
+while true; do
+
+	if [ "$(grep -c "off" ~/.config/polybar/scripts/fanlog)" -eq 1 ]
+	then
+		echo "Fan: ✖"; sleep 3;
+	elif [ "$(grep -c "on" ~/.config/polybar/scripts/fanlog)" -eq 1 ]
+	then
+		echo "Fan: ✔"; sleep 3;
+	fi
+done

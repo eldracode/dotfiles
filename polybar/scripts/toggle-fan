@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "$(grep -c "off" ~/.config/polybar/scripts/fanlog)" -eq 1 ]
+then
+	gksudo bash ~/.config/polybar/scripts/fan-on
+elif [ "$(grep -c "on" ~/.config/polybar/scripts/fanlog)" -eq 1 ]
+then
+	gksudo bash ~/.config/polybar/scripts/fan-off
+fi
+
