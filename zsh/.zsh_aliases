@@ -1,0 +1,95 @@
+# Faulty keyboard
+alias im="vim"
+alias m="mv"
+alias gp="grep"
+alias c="cd"
+
+# Umm Vim....
+alias cim="vim"
+
+# Pacman hax
+alias update="sudo pacman -Syu";
+function install(){
+	sudo pacman -S $1
+}
+
+# Canon Scanner
+alias scan="scangearmp2"
+
+# Disk usage
+alias disk_usage="du --max-depth=1 -h | sort -h"
+
+# edit i3 config
+alias i3config="vim ~/.config/i3/config"
+
+# gitttt
+function lazygit(){
+	git add .
+	git commit -s -m $1
+	git push $2 $3
+
+}
+alias ga="git add . && git commit -s" 
+alias gs="git status" 
+alias gc="git cherry-pick" 
+alias gb="git branch" 
+alias gr="git remote" 
+
+# grep hax
+# search recursively inside files
+function grs(){
+	grep "$1" -rnsi $2
+}
+
+# upload small files
+function upl(){
+        curl --upload-file $1 https://free.keep.sh
+
+}
+
+# cd hax
+alias cd..="cd .."
+alias CD="cd"
+function cdm(){
+	mkdir $1
+	cd $1
+}
+
+# ls hax
+alias LS="ls"
+
+# Floating windows
+function floating(){
+	bash ~/float.sh $1 > /dev/null 2>&1 &
+}
+
+# mounting
+function mount(){
+	if [ $1 = "windows" ]
+	then
+		udisksctl mount -b /dev/sdb3
+	else
+		udisksctl mount -b $1
+	fi
+}
+
+function unmount(){
+	if [ $1 = "windows" ]
+	then
+		udisksctl unmount -b /dev/sdb3
+	else
+		udisksctl unmount -b $1
+	fi
+}
+
+# Signing APKs
+LD_LIBRARY_PATH=/home/eldraco/dev/sign/signapk/ 
+function signapk(){
+	LD_LIBRARY_PATH=/home/eldraco/dev/sign/signapk/ 
+	java -jar ~/dev/sign/signapk/signapk.jar ~/dev/sign/keys/certificate.pem ~/dev/sign/keys/key.pk8 $1 ./signed_$1
+}
+
+# Search in history :P
+function hs(){
+	history | grep -i "$1"
+}
