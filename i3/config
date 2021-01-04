@@ -28,11 +28,16 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
+
+# Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Picom - the compositor
 exec --no-startup-id picom
 
+# Redshift (config stored in ~/.config/redshift/redshift.conf)
+exec --no-startup-id redshift
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -41,49 +46,40 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# udiskie
+exec_always --no-strtup-id udiskie --tray
+
 # suspend
 bindsym Ctrl+Shift+s exec systemctl suspend
+
+# set desktop background with custom effect
+exec --no-startup-id betterlockscreen -w dim
+
+# keybindings for locking screen
+bindsym $mod+x exec betterlockscreen -l dim
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym Ctrl+q kill
 bindsym Mod1+F4 kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec bash $HOME/.config/polybar/scripts/launcher 
 
-
-#start xfce-menu
-bindsym $mod+d exec xfce4-popup-whiskermenu
-
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
-
-# chromium
-bindsym $mod+b exec chromium
-
+# Brave
+bindsym $mod+b exec brave
 
 #wallpaper
-exec_always feh --bg-scale /home/eldraco/Pictures/wall.png
-
+exec_always feh --bg-scale $HOME/Pictures/wall.png
 
 # GAAAAPS
-
 gaps inner 5
-gaps outer 3
-
-
-#resdhift
-#exec_always redshift
+gaps outer 0
 
 # change focus
 bindsym $mod+j focus left
@@ -209,26 +205,28 @@ bindsym $mod+r mode "resize"
 # Brightness
 
 # Increase brightness
-bindsym XF86MonBrightnessUp exec light -A 10 
+bindsym XF86MonBrightnessUp exec light -A 5 
 
 # Decrease brightness
-bindsym XF86MonBrightnessDown exec light -U 10 
+bindsym XF86MonBrightnessDown exec light -U 5 
 
-# Xfce panel
-exec_always --no-startup-id xfce4-panel --disable-wm-check
+# xfce screeshooter
+bindsym Print exec --no-startup-id xfce4-screenshooter
 
+# ksnip : when I need to annotate on my ss
+bindsym Shift+Print exec --no-startup-id ksnip
 
 # Man, that border is ugly af
-
 default_border none
-
 default_floating_border none
-
 hide_edge_borders both
 
+# Flating windows
+#for_window [class="python"] floating enable
+#for_window [class="python"] border pixel 1
+for_window [title="Tst App"] floating enable
+for_window [class="ksnip"] floating enable
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3status
-#}
+# low batterry popup
+exec --no-startup-id i3-battery-popup -L 15 -n -s ~/Music/i3-battery-popup.wav
+for_window [title="Battery Warning"] sticky enable
